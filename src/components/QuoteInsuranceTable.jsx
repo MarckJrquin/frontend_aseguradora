@@ -21,7 +21,7 @@ export const columns = [
   { name: "Cobertura", uid: "coverage" },
   { name: "Precio Cotizado", uid: "price" },
   { name: "Fecha", uid: "createdAt" },
-  { name: "Acciones", uid: "actions" }, // Nueva columna para acciones
+  { name: "Acciones", uid: "actions" },
 ];
 
 const statusColorMap = {
