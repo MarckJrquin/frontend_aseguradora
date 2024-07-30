@@ -17,7 +17,6 @@ const getToken = () => {
     return user?.token;
 };
 
-
 const createQuote = async (quoteData) => {
     const token = getToken();
     const config = {
@@ -116,7 +115,7 @@ const deleteQuote = async (id) => {
         }
     };
     try {
-        const response = await axios.delete(`${API_URL}/${id}`, config);
+        const response = await axios.delete(`${API_URL}/delete-quote/${id}`, config);
         return handleResponse(response);
     } catch (error) {
         handleError(error);

@@ -63,7 +63,7 @@ const AdminNavbar = ({ onToggleSidebar }) => {
       }}
     >
       <NavbarContent>
-        <NavbarBrand as={Link} href="/home">
+        <NavbarBrand as={Link} href="/admin/home">
           {/* <img src={image} alt="aseguradora Logo" className="h-8 w-auto"/> */}
           <FontAwesomeIcon icon={faHandsHoldingCircle} className="font-bold text-black dark:text-white"/>
           <p className="font-bold text-black dark:text-white pl-2 hidden md:block">
@@ -114,8 +114,8 @@ const AdminNavbar = ({ onToggleSidebar }) => {
                 <p className="font-semibold text-sm">Sesión iniciada como</p>
                 <p className="font-semibold text-sm">{profileData?.email}</p>
               </DropdownItem>
-              <DropdownItem key="myprofile" as={Link} href="/profile" className="text-black dark:text-white">Mi Perfil</DropdownItem>
-              <DropdownItem key="help" as={Link} href="/help" className="text-black dark:text-white">Ayuda</DropdownItem>
+              <DropdownItem key="myprofile" as={Link} href="/admin/profile" className="text-black dark:text-white">Mi Perfil</DropdownItem>
+              <DropdownItem key="help" as={Link} href="/" className="text-black dark:text-white">Ayuda</DropdownItem>
               <DropdownItem key="logout" color="danger" onClick={handleLogout}>
                 Cerrar Sesión
               </DropdownItem>

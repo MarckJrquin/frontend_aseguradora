@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ const SidebarContext = createContext();
 
 export default function AdminSidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,6 +27,23 @@ export default function AdminSidebar({ children }) {
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      setExpanded(false);
+    } else {
+      setExpanded(true);
+    }
+  }, [isSmallScreen]);
 
   return (
     <aside className="flex flex-col h-screen shadow-sm">
@@ -77,7 +95,7 @@ export default function AdminSidebar({ children }) {
                 <p className="font-semibold text-sm">{profileData?.email}</p>
               </DropdownItem>
               <DropdownItem key="myprofile" as={Link} href="/admin/profile" className="text-black dark:text-white">Mi Perfil</DropdownItem>
-              <DropdownItem key="help" as={Link} href="/help" className="text-black dark:text-white">Ayuda</DropdownItem>
+              <DropdownItem key="help" as={Link} href="/" className="text-black dark:text-white">Ayuda</DropdownItem>
               <DropdownItem key="logout" color="danger" onClick={handleLogout}>
                 Cerrar Sesión
               </DropdownItem>
